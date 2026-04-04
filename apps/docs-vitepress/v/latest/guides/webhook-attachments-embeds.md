@@ -1,0 +1,73 @@
+# Webhook Attachments & Embeds
+
+Send embeds with or without a title, and attach files to webhook messages—same API as channel messages.
+
+## Overview
+
+Webhooks support rich embeds and file attachments. Embeds can have just a description (no title required), and you can attach files the same way as with channel.send or message.reply.
+
+## Embeds Without a Title
+
+You do not need a title for embeds to work. At least one of title, description, fields, or image/thumbnail is required. A description-only embed is valid.
+
+```javascript
+import { Client, Webhook, EmbedBuilder } from '@erinjs/core';
+
+const client = new Client({ intents: 0 });
+const webhook = Webhook.fromToken(client, webhookId, webhookToken);
+
+// Description only—no title
+await webhook.send({
+  embeds: [
+    new EmbedBuilder()
+      .setDescription('This embed has no title. Description-only works fine.')
+      .setColor(0x5865f2)
+      .setTimestamp(),
+  ],
+});
+```
+
+## Direct Attachments
+
+Attach files to webhook messages using the files array. Each file needs name and data (Blob, ArrayBuffer, or Uint8Array). Optional filename overrides the display name.
+
+```javascript
+import { Client, Webhook } from '@erinjs/core';
+import { readFileSync } from 'fs';
+
+const client = new Client({ intents: 0 });
+const webhook = Webhook.fromToken(client, webhookId, webhookToken);
+
+const buffer = readFileSync('report.pdf');
+await webhook.send({
+  content: 'Report attached',
+  files: [
+    { name: 'report.pdf', data: buffer },
+    { name: 'log.txt', data: new TextEncoder().encode('Log content'), filename: 'log-2025.txt' },
+  ],
+});
+```
+
+## Full Example: Embed + Files
+
+Combine content, description-only embed, and file attachments in a single webhook send.
+
+```javascript
+import { Client, Webhook, EmbedBuilder } from '@erinjs/core';
+import { readFileSync } from 'fs';
+
+const client = new Client({ intents: 0 });
+const webhook = Webhook.fromToken(client, webhookId, webhookToken);
+
+await webhook.send({
+  content: 'Build completed',
+  embeds: [
+    new EmbedBuilder()
+      .setDescription('Deploy succeeded. See attachment for logs.')
+      .setColor(0x57f287)
+      .setTimestamp(),
+  ],
+  files: [{ name: 'deploy.log', data: readFileSync('deploy.log') }],
+  username: 'CI Bot',
+});
+```

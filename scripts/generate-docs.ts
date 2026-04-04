@@ -6,10 +6,9 @@
 
 import { resolve, dirname } from 'path';
 import { mkdirSync, writeFileSync, readFileSync, unlinkSync, readdirSync } from 'fs';
-import { fileURLToPath, pathToFileURL } from 'url';
+import { fileURLToPath } from 'url';
 import { generateDocs } from '@erinjs/docgen';
 import { DocOutput } from '@erinjs/docgen';
-import { guides } from '../apps/docs/src/data/guides';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -25,7 +24,7 @@ const PACKAGES: { id: string; name: string; pkgPath: string }[] = [
   { id: 'types', name: '@erinjs/types', pkgPath: 'packages/types' },
 ];
 
-const DOCS_DIR = resolve(root, 'apps/docs/public/docs');
+const DOCS_DIR = resolve(root, 'apps/docs-vitepress/api-data');
 
 function getVersion(): string {
   try {
@@ -48,7 +47,7 @@ async function main(): Promise<void> {
     try {
       const pkgRoot = resolve(root, pkg.pkgPath);
       const tsconfigPath = resolve(pkgRoot, 'tsconfig.json');
-      const outDir = resolve(root, 'apps/docs/public/docs');
+      const outDir = resolve(root, 'apps/docs-vitepress/api-data');
       const tempFile = resolve(outDir, `_temp_${pkg.id}.json`);
 
       generateDocs({
@@ -134,13 +133,6 @@ async function main(): Promise<void> {
   const versionsData = { versions: allVersions, latest: version };
   writeFileSync(versionsPath, JSON.stringify(versionsData, null, 2), 'utf-8');
   console.log(`[generate-docs] Versions -> ${versionsPath} (${allVersions.length} versions)`);
-
-  // Guides per version (same content for now; override per version in data/ if needed later)
-  const guidesPath = pathToFileURL(resolve(root, 'apps/docs/src/data/guides.ts')).href;
-  const guidesStr = JSON.stringify(guides, null, 2);
-  writeFileSync(resolve(versionedDir, 'guides.json'), guidesStr, 'utf-8');
-  writeFileSync(resolve(latestDir, 'guides.json'), guidesStr, 'utf-8');
-  console.log(`[generate-docs] Guides -> docs/v${version}/guides.json, docs/latest/guides.json`);
 
   console.log('[generate-docs] Done');
 }

@@ -1,0 +1,20 @@
+{
+  "name": "erinjs-docs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "node --import tsx/esm scripts/generate-api.ts api-data/latest/main.json && vitepress build",
+    "preview": "vitepress preview",
+    "generate-api": "node --import tsx/esm scripts/generate-api.ts api-data/latest/main.json",
+    "migrate-guides": "node --import tsx/esm scripts/migrate-guides.ts ../docs/public/docs/latest/guides.json"
+  },
+  "dependencies": {
+    "vitepress": "^1.6.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "tsx": "^4.19.0"
+  }
+}
