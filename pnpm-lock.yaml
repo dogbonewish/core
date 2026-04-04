@@ -7,11 +7,18 @@ settings:
 overrides:
   tar: '>=7.5.11'
   minimatch: '>=10.2.3'
+  brace-expansion: '>=5.0.5'
 
 importers:
 
   .:
     devDependencies:
+      '@changesets/changelog-github':
+        specifier: ^0.5.2
+        version: 0.5.2
+      '@changesets/cli':
+        specifier: ^2.29.8
+        version: 2.29.8(@types/node@20.19.33)
       '@erinjs/builders':
         specifier: workspace:*
         version: link:packages/builders
@@ -36,12 +43,6 @@ importers:
       '@erinjs/ws':
         specifier: workspace:*
         version: link:packages/ws
-      '@changesets/changelog-github':
-        specifier: ^0.5.2
-        version: 0.5.2
-      '@changesets/cli':
-        specifier: ^2.29.8
-        version: 2.29.8(@types/node@20.19.33)
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@9.39.2(jiti@1.21.7))
@@ -1843,8 +1844,8 @@ packages:
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  brace-expansion@5.0.3:
-    resolution: {integrity: sha512-fy6KJm2RawA5RcHkLa1z/ScpBeA762UF9KmZQxwIbDtRJrgLzM10depAiEQ+CXYcoiqW1/m96OAAoke2nE9EeA==}
+  brace-expansion@5.0.5:
+    resolution: {integrity: sha512-VZznLgtwhn+Mact9tfiwx64fA9erHH/MCXEUfB/0bX/6Fz6ny5EGTXYltMocqg4xFAQZtnO3DHWWXi8RiuN7cQ==}
     engines: {node: 18 || 20 || >=22}
 
   braces@3.0.3:
@@ -5252,7 +5253,7 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  brace-expansion@5.0.3:
+  brace-expansion@5.0.5:
     dependencies:
       balanced-match: 4.0.4
 
@@ -6157,7 +6158,7 @@ snapshots:
 
   minimatch@10.2.4:
     dependencies:
-      brace-expansion: 5.0.3
+      brace-expansion: 5.0.5
 
   minimist@1.2.8: {}
 
