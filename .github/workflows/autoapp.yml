@@ -10,11 +10,9 @@ jobs:
     permissions:
       pull-requests: write
     if: |
-      (
-        github.event.pull_request.author_association == 'MEMBER' ||
-        github.event.pull_request.author_association == 'OWNER'
-      ) &&
-      github.event.pull_request.head.repo.full_name == github.repository
+      github.event.pull_request.author_association == 'MEMBER' ||
+      github.event.pull_request.author_association == 'OWNER'
+
     steps:
       - uses: hmarr/auto-approve-action@v4
         continue-on-error: true
