@@ -5,12 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo 'Author association:' ${{ github.event.pull_request.author_association }}
-
-  auto-approve:
+auto-approve:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
