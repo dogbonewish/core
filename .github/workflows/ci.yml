@@ -52,7 +52,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git commit -m "style: apply prettier"
-          git push
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
 
       - name: Comment on fork PR about format fixes
         if: ${{ steps.format_check.outputs.has_changes == 'true' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository }}
