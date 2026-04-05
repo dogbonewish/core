@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/blstmo-abandoned-us-for-the-milk/core/actions/workflows/ci.yml/badge.svg)](https://github.com/blstmo-abandoned-us-for-the-milk/core/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/blstmo-abandoned-us-for-the-milk/core/actions/workflows/codeql.yml/badge.svg)](https://github.com/blstmo-abandoned-us-for-the-milk/core/actions/workflows/codeql.yml)
-[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/blstmo-abandoned-us-for-the-milk/core?utm_source=oss&utm_medium=github&utm_campaign=blstmo-abandoned-us-for-the-milk%2Fcore&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
 [![npm version](https://img.shields.io/npm/v/@erinjs/core.svg)](https://www.npmjs.com/package/@erinjs/core)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
